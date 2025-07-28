@@ -1,13 +1,44 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* primary secondary accent warning info danger border success */
+  --primary: #b39cd0;
+  --secondary: #e89dcd;
+  --border: #808080;
+  --accent: #ffa3b6;
+  --warning: #ffb594;
+  --info: #3a8fc5;
+  --danger: #ffb594;
+  --success: #4d8076;
+}
+
+.dark {
+  --background: #171717;
+  --foreground: #ffffff;
+  --primary: #b39cd0;
+  --secondary: #8195cf;
+  --border: #505050;
+  --accent: #3a8fc5;
+  --warning: #ffb594;
+  --info: #3a8fc5;
+  --danger: #ffb594;
+  --success: #4d8076;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
