@@ -1,49 +1,13 @@
-import { redirect } from 'next/navigation';
+import { addProduct } from '@/app/actions/createProduct';
+import { Category } from '@/types';
 
 // Получаем список категорий на сервере
 async function getCategories() {
   const res = await fetch('https://api.escuelajs.co/api/v1/categories');
-  if (!res.ok) return [];
-  return res.json();
-}
-
-// Server action for adding a product
-async function addProduct(formData: FormData) {
-  'use server';
-  const title = formData.get('title');
-  const price = Number(formData.get('price'));
-  const description = formData.get('description');
-  const categoryId = Number(formData.get('categoryId'));
-  const image = formData.get('image');
-
-  // Validation
-  if (!title || !price || !description || !categoryId || !image) {
-    // can add error handling via state, but server actions should not return an object
-    return;
-  }
-
-  const body = {
-    title,
-    price,
-    description,
-    categoryId,
-    images: [image],
-  };
-
-  const res = await fetch('https://api.escuelajs.co/api/v1/products', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
-
   if (!res.ok) {
-    // can add error handling via state, but server actions should not return an object
-    return;
+    throw new Error('Failed to fetch categories');
   }
-
-  redirect('/products/server-version?success=1');
+  return res.json();
 }
 
 export default async function CreateProductPage() {
@@ -76,7 +40,7 @@ export default async function CreateProductPage() {
           <label className="block mb-1 font-medium" style={{ color: 'var(--primary)' }}>Category</label>
           <select name="categoryId" className="w-full border rounded px-3 py-2" style={{ borderColor: 'var(--border)', background: 'var(--background)', color: 'var(--foreground)' }} required>
             <option value="" disabled selected>Select category</option>
-            {categories.map((cat: any) => (
+            {categories.map((cat: Category) => (
               <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
           </select>
