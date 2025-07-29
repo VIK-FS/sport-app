@@ -12,4 +12,4 @@ export default function FootballCourse() {
       <p className="text-sm text-gray-700">Подходит для начинающих и всех, кто хочет улучшить свои навыки.</p>
     </div>
   );
-} 
+}

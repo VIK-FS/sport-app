@@ -1,6 +1,6 @@
 import { Product } from "@/types";
 
-export default async function ProductsServerVersion({ searchParams }: { searchParams?: { [key: string]: string } }) {
+export default async function ProductsServerVersion({ searchParams }: { searchParams?: Promise<{ [key: string]: string }> }) {
   // Получение данных с внешнего API
   const res = await fetch("https://api.escuelajs.co/api/v1/products");
   if (!res.ok) {
@@ -9,7 +9,8 @@ export default async function ProductsServerVersion({ searchParams }: { searchPa
   const products = await res.json();
 
   // Проверяем query success
-  const success = searchParams?.success === "1";
+  const resolvedSearchParams = await searchParams;
+  const success = resolvedSearchParams?.success === "1";
 
   // Рендер списка продуктов
   return (

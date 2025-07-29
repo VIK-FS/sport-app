@@ -12,4 +12,4 @@ export default function TennisCourse() {
       <p className="text-sm text-gray-700">Курс подходит для всех желающих освоить теннис с нуля.</p>
     </div>
   );
-} 
+}

@@ -11,4 +11,4 @@ export default function SwimmingCourse() {
       <p className="text-sm text-gray-700">Подходит для всех возрастов и уровней подготовки.</p>
     </div>
   );
-} 
+}

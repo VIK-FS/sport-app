@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function page() {
+export default function SportsPage() {
   return (
     <div className="p-8">
       <h2 className="text-2xl font-bold mb-4">Курсы по видам спорта</h2>

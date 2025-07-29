@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     return NextResponse.json({ message: "Hello, from backend!" });
 }
 
-export async function POST(request: NextRequest) {
-    const body = await request.json();
+export async function POST(req: NextRequest) {
+    const body = await req.json();
     return NextResponse.json({ message: "Hello, from backend!", body });
 }

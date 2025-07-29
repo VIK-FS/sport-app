@@ -1,4 +1,5 @@
 'use server';
+import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function addProduct(formData: FormData) {
@@ -32,8 +33,11 @@ export async function addProduct(formData: FormData) {
 
   if (!res.ok) {
     // can add error handling via state, but server actions should not return an object
-    return;
+    //return;
+    revalidateTag('products');
+    redirect('/products/server-version?success=1');
+    
   }
 
-  redirect('/products/server-version?success=1');
+  //redirect('/products/server-version?success=1');
 } 
